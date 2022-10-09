@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+// collection of my variables
+    var computerChoice
+    var playerSelection = 'ROCK'
+    var playerScore = 0
+    var computerScore = 0
+    var tieScore = 0
+    // generates computer selection
+    function getComputerChoice() {
+    computerChoice = Math.floor(Math.random() * 3 + 1);
+        if (computerChoice === 1) {
+            computerChoice = 'rock';
+        } else if (computerChoice === 2) {
+            computerChoice = 'paper'
+        } else if (computerChoice === 3) {
+            computerChoice = 'scissors'
+        }
+    }
+    // plays one round of rock paper scissors. Returns some message of winning, losing or tying.
+    function playRound() {
+        let playerChoice = playerSelection.toLowerCase();
+        getComputerChoice();
+        if (playerChoice === 'rock' && computerChoice === 'scissors') {
+            return 'You win! Rock beats scissors.';
+        } else if (playerChoice === 'rock' && computerChoice === 'paper') {
+            return 'You lose! Rock is defeated by paper.';
+        } else if (playerChoice === 'paper' && computerChoice === 'rock') {
+            return 'You win! Paper beats rock.'
+        } else if (playerChoice === 'paper' && computerChoice === 'scissors') {
+            return 'You lose! Paper is defeated by scissors.';
+        } else if (playerChoice === 'scissors' && computerChoice === 'paper') {
+            return 'You win!  Scissors beat paper.';
+        } else if (playerChoice === 'scissors' && computerChoice === 'rock') {
+            return 'You lose! Scissors are defeated by rock.';
+        } else {
+            return 'It\'s a tie! Try again. '
+        }
+    }
+// plays 5 rounds of RoChamBeau, tracks the wins for player and computer and returns them
+    function game() {
+        for (let i = 0; i < 5; i++) {
+            playRound()
+            if (playRound() === "You win! Paper beats rock." || playRound() === "You win! Rock beats scissors." || playRound() ==="You win!  Scissors beat paper.") {
+                ++playerScore
+            } else if (playRound() ==="You lose! Paper is defeated by scissors." || playRound() ==="You lose! Rock is defeated by paper." || playRound() ==="You lose! Scissors are defeated by rock.") {
+                ++computerScore
+            } else {
+                ++tieScore
+            }
+        }
+            return 'computer score = ' + computerScore + ', ' + 'player score = ' + playerScore + ', ' + 'ties = ' + tieScore
+    }
+    console.log(game())
+</script>
+    
+</body>
+</html>
